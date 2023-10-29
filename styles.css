@@ -1,34 +1,168 @@
+@font-face {
+    font-family: 'Bahnschrift';
+    src: url('bahnschrift.ttf') format('ttf');
+}
+
+html {
+    height: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f8f8f8;
+    height: 100%;
+    background-image: url("assets/background.png");
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: rgb(14, 14, 14);
+    font-family: Bahnschrift;
+    font-weight: normal;
+    font-style: normal;
+    color: white;
 }
 
-header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.project {
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+h1 {
+    color: rgb(255, 187, 0);
+    text-shadow: 3px 3px 2px #020202;
 }
 
 a {
-    color: #007BFF;
-    text-decoration: none;
+    color: red;
+    padding: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    transition: background-color 0.1s linear;
 }
 
 a:hover {
-    text-decoration: underline;
+    color: red;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.shadow {
+    padding: 1px 15px 1px 15px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 3px #030303;
+}
+
+.shadowButton {
+    padding: 1px 15px 1px 15px;
+    border-radius: 10px;
+    transition: all 0.2s;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.shadowButton:hover {
+    outline: 2px solid white;
+    transition: all 0.2s;
+    position: relative;
+    transform: scale(1.01);
+    box-shadow: 0px 0px 13px white;
+}
+
+.wrapper {
+    height: 100%;
+    display: table;
+    width: 100%;
+}
+
+.left {
+    display: table-cell;
+    width: 30%;
+}
+
+.right {
+    display: table-cell;
+    width: 30%;
+}
+
+@media only screen and (max-width: 1400px) {
+    .left {
+        display: table-cell;
+        width: 15%;
+    }
+
+    .right {
+        display: table-cell;
+        width: 15%;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .left {
+        display: table-cell;
+        width: 1%;
+    }
+
+    .right {
+        display: table-cell;
+        width: 1%;
+    }
+}
+
+.center {
+    height: 100%;
+    display: table-cell;
+    padding: 20px;
+    background: #030401;
+    border-radius: 30px 30px 0px 0px;
+}
+
+#adrift_bg {
+    background-image: linear-gradient(to right, rgb(6, 75, 0), rgba(211, 214, 0, 0.116)), url("images/adrift.png");
+}
+
+#normal_bg {
+    background-image: linear-gradient(to right, rgb(40, 0, 75), rgba(203, 0, 214, 0.116)), url("images/normal_activities.png");
+}
+
+#rm2_bg {
+    background-image: linear-gradient(to right, rgb(90, 11, 0), rgba(255, 38, 0, 0.123)), url("images/redmatch2.png");
+}
+
+#grumpps_bg {
+    background-image: linear-gradient(to right, rgb(0, 63, 92), rgba(0, 161, 182, 0.466)), url("images/grumpps.png");
+}
+
+#upward_bg {
+    background-image: linear-gradient(to right, rgb(85, 85, 85), rgba(109, 109, 109, 0.534)), url("images/upward.png");
+}
+
+#patreon_bg {
+    background-image: linear-gradient(to right, #FF424D, #ff424bab), url("images/patreon.png");
+}
+
+#place_bg {
+    background-image: linear-gradient(to right, #7a13a3, #ee8fff49), url("images/place.png");
+}
+
+#workshop_bg {
+    background-image: linear-gradient(to right, #1332a3, #8fc5ff49), url("images/workshop.jpg");
+}
+
+#itch_bg {
+    background: rgb(75, 30, 3);
+    background: linear-gradient(238deg, rgb(51, 21, 1) 0%, rgb(33, 2, 25) 100%);
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, rgba(179, 71, 71, 1) 0%, rgba(125, 179, 71, 1) 25%, rgba(71, 179, 179, 1) 50%, rgba(126, 71, 177, 1) 75%, rgba(179, 71, 71, 1) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-size: 200% 100%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
