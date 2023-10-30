@@ -105,45 +105,37 @@ a:hover {
     height: 100%;
     display: table-cell;
     padding: 20px;
-    background: #030401;
+    background: rgb(75, 30, 3);
+    background: linear-gradient(238deg, rgb(37, 15, 1) 0%, rgb(17, 1, 13) 100%);
     border-radius: 30px 30px 0px 0px;
 }
 
-#adrift_bg {
-    background-image: linear-gradient(to right, rgb(6, 75, 0), rgba(211, 214, 0, 0.116)), url("images/adrift.png");
+#mlaim_bg {
+    background-image: linear-gradient(to right, rgb(90, 11, 0), rgba(255, 38, 0, 0.123)), url("assets/mlaim.png");
 }
 
-#normal_bg {
-    background-image: linear-gradient(to right, rgb(40, 0, 75), rgba(203, 0, 214, 0.116)), url("images/normal_activities.png");
+#tracking_bg {
+    background-image: linear-gradient(to right, rgb(52, 94, 92), rgba(23, 38, 72, 0.534)), url("assets/persontracking.png");
 }
 
-#rm2_bg {
-    background-image: linear-gradient(to right, rgb(90, 11, 0), rgba(255, 38, 0, 0.123)), url("images/redmatch2.png");
+#valo_bg {
+    background-image: linear-gradient(to right, #2b4f28, #244820ab), url("assets/checker.png");
 }
 
-#grumpps_bg {
-    background-image: linear-gradient(to right, rgb(0, 63, 92), rgba(0, 161, 182, 0.466)), url("images/grumpps.png");
+#colorclimb_bg {
+    background-image: linear-gradient(to right, #121212, #22222249), url("assets/colorclimb.png");
 }
 
-#upward_bg {
-    background-image: linear-gradient(to right, rgb(85, 85, 85), rgba(109, 109, 109, 0.534)), url("images/upward.png");
+#scholarlight_bg {
+    background-image: linear-gradient(to right, #414141, #2c2c2c49), url("assets/scholarlight.png");
 }
 
-#patreon_bg {
-    background-image: linear-gradient(to right, #FF424D, #ff424bab), url("images/patreon.png");
-}
-
-#place_bg {
-    background-image: linear-gradient(to right, #7a13a3, #ee8fff49), url("images/place.png");
-}
-
-#workshop_bg {
-    background-image: linear-gradient(to right, #1332a3, #8fc5ff49), url("images/workshop.jpg");
+#yt_bg {
+    background-image: linear-gradient(to right, #2d2339, #1b112949), url("assets/yt.png");
 }
 
 #itch_bg {
-    background: rgb(75, 30, 3);
-    background: linear-gradient(238deg, rgb(51, 21, 1) 0%, rgb(33, 2, 25) 100%);
+    background-image: linear-gradient(to right, #2d2339, #1b112949), url("assets/itch.png");
 }
 
 .text-gradient {
@@ -151,8 +143,8 @@ a:hover {
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
-    background-size: 200% 100%;
-    animation: gradient 15s ease infinite;
+    background-size: 300% 200%;
+    animation: gradient 5s ease infinite;
 }
 
 @keyframes gradient {
