@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Chapter from '../components/Chapter.astro';
+import DetailToggle from '../components/DetailToggle.astro';
+import EnDrive from '../components/cases/EnDrive.astro';
+import Agents from '../components/cases/Agents.astro';
+import Support from '../components/Support.astro';
+import Dusk from '../components/Dusk.astro';
+import Poseidon from '../components/cases/Poseidon.astro';
+import Trainer from '../components/cases/Trainer.astro';
+import Wickwing from '../components/cases/Wickwing.astro';
+import More from '../components/More.astro';
+import Before from '../components/Before.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Billy Hancock, software developer';
+const description =
+  'Billy Hancock is a software developer in Hamilton, New Zealand. By day he builds EnDrive, the platform behind Vision Drive’s driver training, and the agents his team uses for QA and fixes. By night he’s finishing a computer science degree.';
+---
+
+<Base title={title} description={description}>
+  <main>
+    <Hero />
+
+    <section class="part is-day" id="day" aria-labelledby="day-title">
+      <Chapter id="day" title="By day" t0={7.25} t1={8.5}>
+        <p>
+          I joined Enform, part of Activate Education Group, as an intern in 2025 and built the first version of EnDrive
+          in two months. They kept me on. Now it’s mine to run, along with the agents my team uses and the SilverStripe
+          sites we look after.
+        </p>
+        <DetailToggle slot="after" />
+      </Chapter>
+      <EnDrive />
+      <Agents />
+      <Support />
+    </section>
+
+    <Dusk />
+
+    <section class="part is-night" id="night" aria-labelledby="night-title">
+      <Chapter id="night" title="By night" t0={20.5} t1={21.75}>
+        <p>
+          After work it’s the degree, a business with four classmates, and the things I make because I want&nbsp;to.
+        </p>
+        <div slot="after" class="chapter-after">
+          <p class="gpa">
+            <span class="gpa-num">9.0</span>
+            <span class="gpa-text">My GPA, out of 9, in Computer Science at the University of Waikato. One paper to go, then I graduate in early 2027.</span>
+          </p>
+          <DetailToggle />
+        </div>
+      </Chapter>
+      <Poseidon />
+      <Trainer />
+      <Wickwing />
+      <More />
+    </section>
+
+    <div class="is-night">
+      <Before />
+      <Contact />
+    </div>
+  </main>
+  <Footer />
+
+  <script>
+    import '../scripts/main';
+  </script>
+</Base>

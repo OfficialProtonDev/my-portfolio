@@ -1,0 +1,16 @@
+---
+/*
+ * The sky behind the whole page. Colours come from src/lib/sky.ts through
+ * custom properties that src/scripts/sky.ts sets as you scroll. Without
+ * scripts each section paints its own slice of the day instead.
+ */
+---
+
+<div class="sky" aria-hidden="true" data-sky>
+  <div class="sky-starfield" data-starfield>
+    <canvas class="sky-stars" data-stars></canvas>
+    <canvas class="sky-stars is-twinkle" data-stars-twinkle></canvas>
+  </div>
+  <div class="sky-sun" data-sky-sun></div>
+  <div class="sky-sun-disc" data-sky-disc></div>
+</div>

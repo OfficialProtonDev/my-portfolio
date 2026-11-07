@@ -1,0 +1,62 @@
+/*
+ * Self-hosted, trimmed by scripts/subset-fonts.py.
+ * Newsreader (Production Type) for display, Instrument Sans (Instrument) for
+ * reading, IBM Plex Mono for the agents. All under the SIL Open Font License.
+ */
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../assets/fonts/newsreader-roman.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 250 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../assets/fonts/newsreader-italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 250 450;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('../assets/fonts/instrument-sans.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 650;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('../assets/fonts/plex-mono-400.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Plex Mono';
+  src: url('../assets/fonts/plex-mono-500.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+/* Fallbacks sized to the real faces, so the swap barely moves anything. */
+@font-face {
+  font-family: 'Newsreader Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 94%;
+  ascent-override: 98%;
+  descent-override: 26%;
+}
+
+@font-face {
+  font-family: 'Instrument Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 97%;
+  ascent-override: 95%;
+  descent-override: 25%;
+}

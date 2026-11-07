@@ -1,0 +1,20 @@
+---
+const links = [
+  { href: '#day', label: 'By day' },
+  { href: '#night', label: 'By night' },
+  { href: '#before', label: 'Before' },
+  { href: '#hello', label: 'Say hello' },
+];
+---
+
+<header class="bar" data-bar>
+  <div class="bar-inner">
+    <a class="bar-name" href="#top" data-b="mark">Billy Hancock</a>
+    <nav class="bar-nav" aria-label="Chapters" data-b="links">
+      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <p class="bar-clock" aria-hidden="true" data-b="clock">
+      <span class="bar-orb" data-orb></span><span class="bar-now" data-now>6:00 am</span>
+    </p>
+  </div>
+</header>

@@ -1,0 +1,49 @@
+---
+// Ripples on the water, as in the hero: closer together near the horizon.
+const ripples = Array.from({ length: 16 }, (_, i) => {
+  const k = i / 15;
+  const y = 4 + Math.pow(k, 1.7) * 292;
+  return {
+    y: y.toFixed(1),
+    dash: (18 + k * 120).toFixed(0),
+    gap: (10 + k * 70).toFixed(0),
+    off: ((i * 151) % 400).toFixed(0),
+    o: (0.28 - k * 0.12).toFixed(2),
+  };
+});
+---
+
+<footer class="foot" data-bg="#151d2b" data-hello-river>
+  <svg class="hero-ripples" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+    {
+      ripples.map((r) => (
+        <line
+          x1="0"
+          x2="1440"
+          y1={r.y}
+          y2={r.y}
+          stroke-dasharray={`${r.dash} ${r.gap}`}
+          stroke-dashoffset={r.off}
+          style={`opacity:${r.o}`}
+        />
+      ))
+    }
+  </svg>
+  <div class="hero-glint" aria-hidden="true"></div>
+  <div class="wrap foot-inner">
+    <ul class="hello-links">
+      <li><span>GitHub</span><a href="https://github.com/OfficialProtonDev">OfficialProtonDev</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/protondev/">protondev</a></li>
+      <li><span>Next</span>Graduating early 2027</li>
+    </ul>
+    <p class="hello-time">Outside this page, it’s <time data-clock>evening</time> in Hamilton.</p>
+    <div class="foot-row">
+      <p class="foot-note">
+        Built by Billy Hancock with Astro, and set in Newsreader and Instrument Sans. On a first visit, five agents
+        build the top of this page before sunrise. Their moves are choreographed, but the checks they run are real,
+        measured in your browser.
+      </p>
+      <button class="pill-btn" type="button" data-rebuild>Watch the agents build it</button>
+    </div>
+  </div>
+</footer>

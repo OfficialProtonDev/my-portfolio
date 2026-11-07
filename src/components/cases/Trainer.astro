@@ -1,0 +1,126 @@
+---
+import Case from '../Case.astro';
+import Shot from '../Shot.astro';
+import Deep from '../Deep.astro';
+import overview from '../../assets/shots/compx361-overview.webp';
+import subset from '../../assets/shots/compx361-subset.webp';
+
+const live = 'https://officialprotondev.github.io/COMPX361-Final-Exam-Trainer/';
+
+const facts = [
+  { k: 'Role', v: 'Solo, built for my class and shared with them' },
+  { k: 'Built with', v: 'Preact and esbuild, shipped as one HTML file' },
+  { k: 'Live', v: 'Open the trainer', href: live },
+];
+
+// Sent by classmates after I shared it. Verbatim, names left out.
+const messages = [
+  'Yooo! Thank you very much for the COMPX361 training material & resources mate. Highly appreciate it',
+  'also @Proton you’re lowkey the goat for that study website holy godsend',
+  'youre a life saver. thank you claude and proton my heros',
+];
+
+const siblings = [
+  {
+    name: 'COMPX310 Final Test Trainer',
+    href: 'https://officialprotondev.github.io/COMPX310-Final-Test-Trainer/',
+    text: 'Machine learning. 535 practice questions, 28 interactive visuals, and a cheat sheet builder that prints to exactly two A4 pages.',
+  },
+  {
+    name: 'COMPX324 Exam Companion',
+    href: 'https://officialprotondev.github.io/COMPX324-Exam-Companion/',
+    text: 'User experience design. 39 concept cards and an answer scaffold for an open-book exam.',
+  },
+  {
+    name: 'COMPX361 Test 2 Trainer',
+    href: 'https://officialprotondev.github.io/COMPX361-Test-2-Trainer/',
+    text: 'The first version, for the mid-semester test: 24 checked drills.',
+  },
+];
+
+const notes = [
+  '<strong>Real checkers, not answer keys.</strong> Engines for finite automata and regular expressions, Turing machines, Hoare logic, propositional and predicate logic, grammars and induction, each with its own tests.',
+  '<strong>Questions that don’t run out.</strong> Random mode generates fresh machines at three sizes, so a drill can be repeated without memorising the answer.',
+  '<strong>Marked by Claude, checked by the engines.</strong> A Claude-hosted copy marks written answers and photos of handwritten working through the student’s own Claude account, and runs what it reads, such as a Turing machine or an automaton, through the same checkers the drills use.',
+  '<strong>One file, no server.</strong> esbuild bundles everything into a single HTML file, progress stays in the browser, and the deploy only goes out if every engine test passes.',
+];
+---
+
+<Case
+  id="trainer"
+  name="COMPX361 Final Exam Trainer"
+  line="Every process on Waikato’s logic and computation exam, as drills that check each step as you work it."
+  facts={facts}
+  t0={23}
+  t1={24.5}
+>
+  <div class="wrap">
+    <div class="tr-media">
+      <Shot
+        class="tr-overview"
+        src={overview}
+        alt="The trainer’s overview: “Every exam process, one checked step at a time,” above a study plan that ranks drills by the marks each question type was worth."
+        sizes="(min-width: 90rem) 56rem, (min-width: 48rem) 66vw, 100vw"
+      />
+      <Shot
+        class="tr-subset"
+        src={subset}
+        alt="A subset method drill with a randomly generated NFSA drawn as a state diagram, and the first checked step below it."
+        sizes="(min-width: 90rem) 26rem, (min-width: 48rem) 32vw, 100vw"
+      />
+    </div>
+  </div>
+
+  <div class="wrap tr-grid">
+    <div class="tr-text">
+      <p class="lede">
+        COMPX361 is Waikato’s logic and computation paper: automata, Turing machines, grammars, logic and program
+        verification, all examined by&nbsp;hand.
+      </p>
+      <p>
+        The trainer turns every process on the paper into a drill that checks each step. The subset method is checked
+        one table cell at a time. A Turing machine you design is run on every input up to length six, and the first one
+        it gets wrong is shown with its configuration sequence. Loop invariants are checked against all three
+        Hoare-logic obligations.
+      </p>
+      <p>
+        A study plan ranks the 50 drills by the marks each question type was worth in recent exams, and a mock exam
+        sets a fresh three-hour, 100-mark paper. I made it for my classmates as much as for myself, and shared it with
+        the class.
+      </p>
+    </div>
+    <figure class="thanks">
+      <ul class="thanks-list">
+        {
+          messages.map((m) => (
+            <li>
+              <blockquote>
+                <p>{m}</p>
+              </blockquote>
+              <span class="thanks-from">Classmate</span>
+            </li>
+          ))
+        }
+      </ul>
+      <figcaption class="cap">A few of the messages from classmates. Proton is my handle online.</figcaption>
+    </figure>
+  </div>
+
+  <div class="wrap tr-siblings">
+    <h4 class="sub">The same idea, for other papers</h4>
+    <ul class="siblings">
+      {
+        siblings.map((s) => (
+          <li>
+            <a href={s.href}>{s.name}</a>
+            <span>{s.text}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="wrap">
+    <Deep notes={notes} />
+  </div>
+</Case>

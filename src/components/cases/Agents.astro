@@ -1,0 +1,115 @@
+---
+import Case from '../Case.astro';
+
+const facts = [
+  { k: 'Role', v: 'Designed and built it' },
+  { k: 'Used by', v: 'My team at Enform, for QA and fixes' },
+  { k: 'Status', v: 'In use. The details are private for now' },
+];
+
+// Six stops round the loop, placed like hours on a clock face. The figure is
+// wider than the ring so the labels have room either side.
+const R = 200;
+const C = 270;
+const ASPECT = 1.5;
+const stops = [
+  { who: 'agent', title: 'QA orchestrator', text: 'Splits the job and hands it out.', side: 'top' },
+  { who: 'agents', title: 'QA subagents', text: 'Each checks one part, in parallel.', side: 'right' },
+  { who: 'agents', title: 'Findings and evidence', text: 'What failed, and the proof.', side: 'right' },
+  { who: 'people', title: 'My team', text: 'Reviews the findings and answers the agents’ questions.', side: 'bottom' },
+  { who: 'agent', title: 'Fix orchestrator', text: 'Takes the confirmed findings.', side: 'left' },
+  { who: 'agents', title: 'Fix subagents', text: 'Make the changes, which go back through QA.', side: 'left' },
+].map((s, i) => {
+  const a = (i * Math.PI) / 3;
+  return { ...s, i, x: C + R * Math.sin(a), y: C - R * Math.cos(a), px: 50 + (37 * Math.sin(a)) / ASPECT, py: 50 - 37 * Math.cos(a) };
+});
+
+// Arcs between neighbours, stopping short of each node.
+const gap = 0.2;
+const arcs = stops.map((s, i) => {
+  const a0 = (i * Math.PI) / 3 + gap;
+  const a1 = ((i + 1) * Math.PI) / 3 - gap;
+  const x0 = C + R * Math.sin(a0);
+  const y0 = C - R * Math.cos(a0);
+  const x1 = C + R * Math.sin(a1);
+  const y1 = C - R * Math.cos(a1);
+  return `M${x0.toFixed(1)} ${y0.toFixed(1)}A${R} ${R} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}`;
+});
+---
+
+<Case
+  id="agents"
+  name="Agent orchestration"
+  line="A dashboard where my team runs QA and fix agents, reviews what they find and answers their questions."
+  facts={facts}
+  t0={12.75}
+  t1={15.75}
+  class="case-agents"
+>
+  <div class="wrap ag-grid">
+    <figure class="loop">
+      <svg class="loop-ring" viewBox="0 0 540 540" aria-hidden="true">
+        <defs>
+          <marker id="loop-arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+            <path d="M1 1.5 8 5 1 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path>
+          </marker>
+        </defs>
+        <circle class="loop-face" cx={C} cy={C} r={R - 34}></circle>
+        {
+          Array.from({ length: 60 }, (_, i) => {
+            const a = (i * Math.PI) / 30;
+            const r0 = R - 34;
+            const r1 = r0 - (i % 5 === 0 ? 9 : 4);
+            return (
+              <line
+                class:list={['loop-min', { 'is-five': i % 5 === 0 }]}
+                x1={(C + r0 * Math.sin(a)).toFixed(1)}
+                y1={(C - r0 * Math.cos(a)).toFixed(1)}
+                x2={(C + r1 * Math.sin(a)).toFixed(1)}
+                y2={(C - r1 * Math.cos(a)).toFixed(1)}
+              />
+            );
+          })
+        }
+        {arcs.map((d) => <path class="loop-arc" d={d} marker-end="url(#loop-arrow)"></path>)}
+        {stops.map((s) => <circle class:list={['loop-node', { 'is-human': s.who === 'people' }]} cx={s.x.toFixed(1)} cy={s.y.toFixed(1)} r={s.who === 'people' ? 11 : 7}></circle>)}
+        {
+          stops.map((s) => (
+            <text class="loop-num" x={(C + (R + 30) * Math.sin((s.i * Math.PI) / 3)).toFixed(1)} y={(C - (R + 30) * Math.cos((s.i * Math.PI) / 3) + 6).toFixed(1)} text-anchor="middle">
+              {s.i + 1}
+            </text>
+          ))
+        }
+        <g class="loop-orbit">
+          <circle class="loop-dot" cx={C} cy={C - R} r="4.5"></circle>
+        </g>
+      </svg>
+      <ol class="loop-stops" aria-label="How a job moves through the dashboard">
+        {
+          stops.map((s) => (
+            <li class:list={['loop-stop', `is-${s.side}`, { 'is-human': s.who === 'people' }]} style={`--x:${s.px.toFixed(2)}%;--y:${s.py.toFixed(2)}%`}>
+              <span class="loop-who">{s.who}</span>
+              <strong>{s.title}</strong>
+              <span class="loop-text">{s.text}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="loop-centre">Nothing is closed until QA has passed it.</p>
+    </figure>
+
+    <div class="ag-text">
+      <p class="lede">QA and fix work at Enform now runs through a management dashboard I&nbsp;built.</p>
+      <p>
+        My team and I set QA and fix orchestrators going, and each splits its job across subagents of its own. QA comes
+        back with findings and the evidence behind them. We review those and answer the questions the agents raise when
+        they aren’t sure. Confirmed findings go to the fix orchestrator, and its changes go back through QA before
+        anything is closed.
+      </p>
+      <p>
+        The way this page builds itself on a first visit borrows the same shape: agents with one job each, checks that
+        measure real things, and a person answering the question that matters.
+      </p>
+    </div>
+  </div>
+</Case>

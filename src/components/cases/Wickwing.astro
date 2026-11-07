@@ -1,0 +1,39 @@
+---
+import Case from '../Case.astro';
+import Shot from '../Shot.astro';
+import lodge from '../../assets/shots/wickwing-lodge.webp';
+
+const play = 'https://officialprotondev.github.io/play-wickwing/';
+
+const facts = [
+  { k: 'Role', v: 'Design and code' },
+  { k: 'Built with', v: 'JavaScript and HTML canvas' },
+  { k: 'Play', v: 'In your browser', href: play },
+];
+---
+
+<Case id="wickwing" name="Wickwing" line="A lamplighter’s platformer you can play in the browser." facts={facts} t0={24.5} t1={25.25}>
+  <div class="wrap ww-grid">
+    <div class="ww-shot">
+      <Shot
+        src={lodge}
+        alt="Wickwing’s prologue, The Lodge: a moth carrying a lantern beside a stone cottage at sundown on Emberfall Moor."
+        sizes="(min-width: 90rem) 52rem, (min-width: 48rem) 60vw, 100vw"
+        widths={[640, 960, 1280, 1920, 2560]}
+        pixel
+      />
+    </div>
+    <div class="ww-text">
+      <p class="lede">Every autumn, the moths cross the Stillsea by the light of the Beacon.</p>
+      <p>
+        Wickwing is the climb to keep it lit: a pixel-art platformer where you carry a lantern up a mountain, blinking
+        to braziers, burning through thickets and lighting lamps to open the way.
+      </p>
+      <p>
+        Each room has one idea. It’s shown once somewhere safe, then asked for again where a mistake costs more, and the
+        place itself explains the layout. A level lab is built in for making new rooms.
+      </p>
+      <p class="cta"><a href={play}>Play Wickwing</a></p>
+    </div>
+  </div>
+</Case>

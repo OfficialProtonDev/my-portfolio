@@ -1,0 +1,23 @@
+---
+import { clockText, hours } from '../lib/sky';
+
+interface Props {
+  id: string;
+  title: string;
+  t0: number;
+  t1: number;
+}
+
+const { id, title, t0, t1 } = Astro.props;
+---
+
+<header class="chapter" {...hours(t0, t1)}>
+  <div class="wrap chapter-inner">
+    <p class="chapter-time" aria-hidden="true">{clockText(t0)}</p>
+    <h2 class="chapter-title" id={`${id}-title`}>{title}</h2>
+    <div class="chapter-intro">
+      <slot />
+    </div>
+    <slot name="after" />
+  </div>
+</header>

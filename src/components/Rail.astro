@@ -1,0 +1,40 @@
+---
+/*
+ * The day as a ruler down the right edge. The dot is the time the page has
+ * reached as you scroll. Visual only: the bar's links do the same job for
+ * keyboards and screen readers.
+ */
+const T0 = 6;
+const T1 = 30;
+const at = (t: number) => ((t - T0) / (T1 - T0)).toFixed(4);
+const ticks = Array.from({ length: 25 }, (_, i) => T0 + i);
+const marks = [
+  { t: 6, label: '6 am' },
+  { t: 12, label: 'noon' },
+  { t: 18, label: '6 pm' },
+  { t: 24, label: '12 am' },
+  { t: 30, label: '6 am' },
+];
+const chapters = [
+  { t: 7.25, label: 'By day', href: '#day' },
+  { t: 17.5, label: 'Dusk', href: '#overnight' },
+  { t: 20.5, label: 'By night', href: '#night' },
+  { t: 26, label: 'Before', href: '#before' },
+  { t: 29.25, label: 'Say hello', href: '#hello' },
+];
+---
+
+<div class="rail" aria-hidden="true" data-rail>
+  <div class="rail-track">
+    {ticks.map((h) => <span class:list={['rail-tick', { 'is-major': h % 6 === 0 }]} style={`--at:${at(h)}`} />)}
+    {marks.map((m) => <span class="rail-mark" style={`--at:${at(m.t)}`}>{m.label}</span>)}
+    {
+      chapters.map((c) => (
+        <a class="rail-ch" href={c.href} tabindex="-1" style={`--at:${at(c.t)}`}>
+          {c.label}
+        </a>
+      ))
+    }
+    <span class="rail-dot" data-rail-dot></span>
+  </div>
+</div>

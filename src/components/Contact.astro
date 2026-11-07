@@ -1,0 +1,40 @@
+---
+import { clockText, hours } from '../lib/sky';
+import { nextDawnRanges as ranges } from '../lib/ranges';
+
+const email = 'billycodez@gmail.com';
+const T0 = 29.25;
+const T1 = 30;
+---
+
+<!--
+  The page ends where it began: dawn over the river. The big words sit on the
+  sky like the name does at the top, and the sun comes up as you reach the
+  bottom. The links sit on the water below, in the footer.
+-->
+<section class="hello" id="hello" aria-labelledby="hello-title" {...hours(T0, T1)} data-hello data-live-clock>
+  <div class="wrap hello-inner">
+    <p class="chapter-time" aria-hidden="true" data-ink-auto="hello-time" data-live-time>{clockText(T0)}</p>
+    <h2 class="chapter-title" id="hello-title" data-ink-auto="hello">Say hello</h2>
+    <div class="hello-grid">
+      <p class="hello-lead" data-ink-auto="hello">
+        I’m not looking for a new role, but I’m always up for talking about software, agents, or something you’re
+        building.
+      </p>
+      <div class="hello-mail" data-ink-auto="hello">
+        <a class="hello-address" href={`mailto:${email}`}>{email}</a>
+        <button class="pill-btn is-inverse" type="button" data-copy={email}>Copy address</button>
+        <span class="sr-only" aria-live="polite" data-copy-status></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hello-scene" aria-hidden="true">
+    <div class="hero-sun"></div>
+    <svg class="hero-ranges" viewBox="0 0 1440 140" preserveAspectRatio="none">
+      <path class="far" d={ranges.far}></path>
+      <path class="mid" d={ranges.mid}></path>
+      <path class="near" d={ranges.near}></path>
+    </svg>
+  </div>
+</section>

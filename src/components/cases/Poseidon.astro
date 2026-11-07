@@ -1,0 +1,66 @@
+---
+import Case from '../Case.astro';
+import Deep from '../Deep.astro';
+
+const facts = [
+  { k: 'Role', v: 'One of five developers' },
+  { k: 'Course', v: 'COMPX374 at Waikato, 2026' },
+  { k: 'Built with', v: 'Next.js, TypeScript, PostgreSQL on Supabase, Drizzle, Cloudflare R2' },
+  { k: 'Result', v: 'A+, and now a coaching app business' },
+];
+
+const slices = [
+  { name: 'Shared core: app, CI, database and storage', mine: true },
+  { name: 'Accounts, roles and guardian consent', mine: true },
+  { name: 'Media: upload, playback and retention', mine: true },
+  { name: 'Tickets and announcements', mine: false },
+  { name: 'Session plans and calendar', mine: false },
+  { name: 'Skill library', mine: false },
+  { name: 'Athlete profiles, goals and records', mine: false },
+];
+
+const notes = [
+  '<strong>Uploads skip the server.</strong> Video goes straight to object storage in parts. The upload is authorised once, before the first part is signed, and a signed grant ties it to its uploader, so an upload id on its own is worth nothing.',
+  '<strong>Downloads leave a permanent record.</strong> Database triggers refuse to update, delete or truncate the download log.',
+  '<strong>Deny by default.</strong> Row-level security is on for every table, and every endpoint that touches data goes through the same actor and capability checks.',
+  '<strong>Sessions end when people stop using them.</strong> Fourteen idle days end a session, and signing out revokes it everywhere on the next request rather than when the token expires.',
+  '<strong>Accessibility is tested.</strong> Five colour schemes, each in light and dark, and a test fails the build if any text pairing drops below WCAG AA.',
+  '<strong>Decisions are written down.</strong> 33 architecture decision records, and a status file per slice so five people aren’t all editing the same page.',
+];
+---
+
+<Case id="poseidon" name="Poseidon" line="A coaching platform for an artistic swimming club." facts={facts} t0={21.75} t1={23}>
+  <div class="wrap ps-grid">
+    <div class="ps-text">
+      <p class="lede">The club’s coaching lived in WhatsApp threads and unlabelled phone videos. Poseidon gives it one place.</p>
+      <p>
+        An athlete asks a question as a ticket, uploads video against it and tags the skill it’s about. A coach
+        answers, and the video is deleted once the question is closed. Coaches plan sessions from a shared skill
+        library, athletes track goals and records, and guardians follow along read-only.
+      </p>
+      <p>
+        We built it in four two-week cycles, each ending in a review with the client. It earned an A+, and the five of
+        us are now taking it further as a coaching app business.
+      </p>
+    </div>
+    <figure class="ps-slices">
+      <ul class="slices" aria-label="Who built which part">
+        {
+          slices.map((s) => (
+            <li class:list={{ 'is-mine': s.mine }}>
+              <span class="slice-name">{s.name}</span>
+              <span class="slice-owner">{s.mine ? 'Billy' : 'Teammate'}</span>
+            </li>
+          ))
+        }
+      </ul>
+      <figcaption class="cap">
+        Five developers, seven parts. I carried three: the foundation everything stands on, accounts and consent, and
+        media.
+      </figcaption>
+    </figure>
+  </div>
+  <div class="wrap">
+    <Deep notes={notes} />
+  </div>
+</Case>

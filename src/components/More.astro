@@ -1,0 +1,95 @@
+---
+import { clockText, hours } from '../lib/sky';
+
+interface Item {
+  name: string;
+  href?: string;
+  desc: string;
+  tech: string;
+  year: string;
+}
+
+const items: Item[] = [
+  {
+    name: 'POSERS',
+    desc: 'An online party game for Steam. After closing time, thieves in mannequin suits rob a department store while a night guard tries to spot them. In development.',
+    tech: 'Godot 4, GodotSteam',
+    year: '2026',
+  },
+  {
+    name: 'Overlearn',
+    href: 'https://officialprotondev.github.io/overlearn/',
+    desc: 'A study tool that runs on packs a Claude Code skill writes from your own lecture slides: escalating quizzes, mock tests and a cheat sheet that sizes its type to fit the page.',
+    tech: 'React, TypeScript',
+    year: '2026',
+  },
+  {
+    name: 'Rimu Labs',
+    href: 'https://rimulabs.com/',
+    desc: 'Web-data tools for marketers, SEOs and AI agents, including rimulabs-trends, a drop-in replacement for the archived pytrends.',
+    tech: 'Python, Apify',
+    year: '2026',
+  },
+  {
+    name: 'FSM Designer',
+    href: 'https://officialprotondev.github.io/fsm-designer/',
+    desc: 'A finite state machine designer on canvas, with states that stretch to fit long names.',
+    tech: 'JavaScript',
+    year: '2026',
+  },
+  {
+    name: 'Tuatara Turing Machine',
+    href: 'https://github.com/OfficialProtonDev/TuataraTuringMachine',
+    desc: 'A fork of James Foulds’ Turing machine simulator, fixing issues and extending what it can do.',
+    tech: 'Java',
+    year: '2026',
+  },
+  {
+    name: 'DevPrep',
+    href: 'https://github.com/OfficialProtonDev/DevPrep',
+    desc: 'An AI technical interview simulator with instant feedback on your code.',
+    tech: 'Next.js, TypeScript',
+    year: '2025',
+  },
+  {
+    name: 'Media Verifier',
+    href: 'https://github.com/OfficialProtonDev/Media-Verifier',
+    desc: 'Checks that digital media is authentic using the Solana testnet, with Phantom wallet sign-in.',
+    tech: 'JavaScript, Solana',
+    year: '2025',
+  },
+  {
+    name: '3D body tracking',
+    href: 'https://github.com/OfficialProtonDev/Person-3D-Tracking-Unity-Webcam-CPU',
+    desc: 'Webcam-based 3D body tracking for Unity that runs on the CPU.',
+    tech: 'Python, Unity',
+    year: '2023',
+  },
+];
+
+const T0 = 25.25;
+const T1 = 26;
+---
+
+<section class="more" aria-labelledby="more-title" {...hours(T0, T1)}>
+  <div class="wrap">
+    <div class="more-head">
+      <p class="case-time" aria-hidden="true">{clockText(T0)}</p>
+      <h3 class="more-title" id="more-title">Also built, mostly after dark</h3>
+    </div>
+    <ul class="more-list">
+      {
+        items.map((item) => (
+          <li class="more-item">
+            <p class="more-name">{item.href ? <a href={item.href}>{item.name}</a> : item.name}</p>
+            <p class="more-desc">{item.desc}</p>
+            <p class="more-meta">
+              <span>{item.tech}</span>
+              <span>{item.year}</span>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

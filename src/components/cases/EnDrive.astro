@@ -1,0 +1,161 @@
+---
+import Case from '../Case.astro';
+import Shot from '../Shot.astro';
+import Photo from '../Photo.astro';
+import Deep from '../Deep.astro';
+import home from '../../assets/shots/visiondrive-home.webp';
+import mobile from '../../assets/shots/visiondrive-mobile.webp';
+import enrol from '../../assets/shots/visiondrive-enrol.webp';
+
+const facts = [
+  { k: 'Role', v: 'Sole developer, from design to deploys' },
+  { k: 'Result', v: 'A perfect NZTA compliance audit' },
+  { k: 'Built with', v: 'ABP Framework on ASP.NET Core, PostgreSQL, Azure Blob Storage' },
+  { k: 'Live', v: 'visiondrive.nz', href: 'https://visiondrive.nz' },
+];
+
+const route = [
+  ['Book', 'Four steps online, or a whole team at once.'],
+  ['Verify', 'ID checked against the strongest document the course accepts.'],
+  ['Train', 'Sessions from recurring schedules: campus, tutor, capacity.'],
+  ['Assess', 'Checklists built from shared sections, then signed off.'],
+  ['Certify', 'Certificates issued from tracked blank stock.'],
+  ['Report', 'NZQA registers to Excel. Audits keep their evidence.'],
+  ['Bill', 'Card payments, invoices and credit notes, posted to the books.'],
+];
+
+const credits = ['Design', 'Front end', 'Back end', 'Database', 'Payments and invoicing', 'Compliance reporting', 'Deploys', 'Support'];
+
+const notes = [
+  '<strong>Two stacks so far.</strong> It began on ASP.NET, React and MariaDB. I migrated it onto ABP Framework and PostgreSQL, with files in Azure Blob Storage and email through SMTP2Go and MailKit.',
+  '<strong>Invoices that match the books.</strong> Invoices and credit notes integrate with Microsoft Dynamics 365 Business Central, carrying the product codes and tax rates it expects. Removing a learner raises a credit note after a short delay, so several removals become one.',
+  '<strong>Card payments confirm the booking.</strong> Individuals pay through Stripe Checkout, reconciled from webhooks, so an abandoned checkout leaves no invoice behind. Company and MSD-funded bookings are invoiced instead.',
+  '<strong>Schedules instead of data entry.</strong> Sessions are generated from recurring schedules, which staff can pause or close to the public.',
+  '<strong>The strongest ID a course accepts.</strong> Document types are ranked, each learner is offered the best one their course takes, and submissions wait in a review queue.',
+  '<strong>Compliance as a by-product.</strong> Certificates come from tracked stock, NZQA assessor, trainee and certificate registers export to Excel, and changes land in an audit log.',
+  '<strong>Machines have paperwork too.</strong> Every training machine carries its own compliance certificates and service status.',
+  '<strong>Where bookings come from.</strong> Referral partners get tracked links, and bookings made after following one are credited to them.',
+];
+---
+
+<Case
+  id="endrive"
+  name="EnDrive"
+  line="Booking, compliance and records for driver training schools."
+  facts={facts}
+  t0={8.5}
+  t1={12.75}
+>
+  <div class="wrap">
+    <div class="ed-media">
+      <Shot
+        class="ed-desk"
+        src={home}
+        alt="The Vision Drive home page, offering car, forklift and truck driver training with buttons to book."
+        sizes="(min-width: 90rem) 64rem, (min-width: 48rem) 74vw, 100vw"
+      />
+      <Shot
+        class="ed-phone"
+        src={mobile}
+        alt="The same page on a phone."
+        sizes="(min-width: 90rem) 17rem, (min-width: 48rem) 20vw, 40vw"
+        widths={[360, 540, 720, 1080]}
+        phone
+      />
+    </div>
+  </div>
+
+  <div class="wrap story">
+    <p class="lede">
+      EnDrive started as my two-month internship project at Enform in October 2025: a course booking system that had
+      to meet NZTA and NZQA requirements.
+    </p>
+    <div class="story-body">
+      <p>
+        At the end of it I presented the system to a room of industry people, educators and students. Activate
+        Education Group, Enform’s parent company, kept me on to finish it, and I’ve owned it since: the design, the
+        conversations with the people who use it, the code and the deploys.
+      </p>
+      <p>
+        It runs Vision Drive, which trains car, forklift and truck drivers in Hamilton. The data entry, moderation and
+        reporting features I added helped the school to a perfect NZTA compliance audit.
+      </p>
+      <p>
+        The public site takes the bookings. Behind it, a 24-screen admin follows each learner from booking to
+        certificate, and keeps the records a training provider is audited on.
+      </p>
+    </div>
+  </div>
+
+  <figure class="wrap stage">
+    <div class="stage-photos">
+      <Photo
+        name="stage-wide"
+        class="stage-wide"
+        alt="Billy on stage at a lectern, gesturing to the audience as he presents. Behind him the Vision Drive home page, Forklift and Truck Driver Training, fills a large screen."
+        sizes="(min-width: 90rem) 52rem, (min-width: 48rem) 62vw, 100vw"
+        ratio="3 / 2"
+        focus="50% 50%"
+      />
+      <Photo
+        name="stage-close"
+        class="stage-close"
+        alt="Billy speaking into a microphone in front of his title slide: Billy Hancock, Vision Drive Booking System."
+        sizes="(min-width: 90rem) 26rem, (min-width: 48rem) 30vw, 100vw"
+        ratio="4 / 5"
+        focus="58% 40%"
+      />
+    </div>
+    <figcaption class="cap">
+      Presenting the first version, then called the Vision Drive Booking System, at the end of my internship.
+    </figcaption>
+  </figure>
+
+  <div class="wrap">
+    <div class="route-wrap">
+      <h4 class="sub">A learner’s path through EnDrive</h4>
+      <ol class="route">
+        {
+          route.map(([title, text]) => (
+            <li>
+              <p class="route-step">{title}</p>
+              <p class="route-text">{text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </div>
+
+  <div class="wrap ed-pair">
+    <figure class="ed-enrol">
+      <Shot
+        src={enrol}
+        alt="The first step of booking on visiondrive.nz: choosing whether the booking is for yourself or for a team."
+        sizes="(min-width: 90rem) 40rem, (min-width: 48rem) 52vw, 175vw"
+      />
+      <figcaption class="cap">
+        Booking starts by asking who it’s for, because a company booking a team is invoiced while an individual pays at
+        checkout.
+      </figcaption>
+    </figure>
+    <div class="credits" role="group" aria-labelledby="credits-title">
+      <p class="credits-title" id="credits-title">Credits</p>
+      <p class="credits-line">Every role, from design to support: Billy Hancock.</p>
+      <dl>
+        {
+          credits.map((role) => (
+            <div>
+              <dt>{role}</dt>
+              <dd>Billy Hancock</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <Deep notes={notes} />
+  </div>
+</Case>

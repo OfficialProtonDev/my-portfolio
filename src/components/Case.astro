@@ -1,0 +1,40 @@
+---
+import { clockText, hours } from '../lib/sky';
+
+export interface Fact {
+  k: string;
+  v: string;
+  href?: string;
+}
+
+interface Props {
+  id: string;
+  name: string;
+  line: string;
+  facts: Fact[];
+  t0: number;
+  t1: number;
+  class?: string;
+}
+
+const { id, name, line, facts, t0, t1, class: cls } = Astro.props;
+---
+
+<article class:list={['case', cls]} id={id} aria-labelledby={`${id}-name`} {...hours(t0, t1)}>
+  <header class="wrap case-head">
+    <p class="case-time" aria-hidden="true">{clockText(t0)}</p>
+    <h3 class="case-name" id={`${id}-name`}>{name}</h3>
+    <p class="case-line">{line}</p>
+    <dl class="case-facts">
+      {
+        facts.map((f) => (
+          <div>
+            <dt>{f.k}</dt>
+            <dd>{f.href ? <a href={f.href}>{f.v}</a> : f.v}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </header>
+  <slot />
+</article>

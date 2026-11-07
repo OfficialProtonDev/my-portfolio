@@ -1,0 +1,49 @@
+---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  sizes: string;
+  url?: string;
+  /** Pixel art: served as its lossless source, never re-encoded. */
+  pixel?: boolean;
+  phone?: boolean;
+  widths?: number[];
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  sizes,
+  url,
+  pixel = false,
+  phone = false,
+  widths = [480, 720, 960, 1280, 1600, 2000, 2560],
+  class: className,
+} = Astro.props;
+
+const usable = widths.filter((w) => w <= src.width);
+---
+
+<figure class:list={['shot', className, { 'is-pixel': pixel, 'is-phone': phone }]}>
+  {url && <div class="shot-bar">{url}</div>}
+  {
+    pixel ? (
+      <img src={src.src} width={src.width} height={src.height} alt={alt} loading="lazy" decoding="async" />
+    ) : (
+      <Image
+        src={src}
+        alt={alt}
+        widths={usable}
+        sizes={sizes}
+        format="webp"
+        quality={82}
+        loading="lazy"
+        decoding="async"
+      />
+    )
+  }
+</figure>

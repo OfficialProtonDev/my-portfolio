@@ -1,0 +1,77 @@
+---
+import Chapter from './Chapter.astro';
+import { hours } from '../lib/sky';
+
+const T0 = 26;
+const T1 = 29.25;
+
+const story = [
+  {
+    when: 'Age 8',
+    title: 'Unity games and Python tools',
+    text: 'The first things I made. The habit stuck.',
+  },
+  {
+    when: '2022',
+    title: 'Euvania',
+    proof: '$15,000 in sales',
+    text: 'In my last year of school I founded an online store and grew it on social media to over 500,000 impressions.',
+  },
+  {
+    when: '2023',
+    title: 'Scholar Light',
+    proof: 'Winner, 2023 EndGame Award for Smart Technology',
+    text: 'An AI learning platform I co-founded through Young Enterprise and led the development of.',
+  },
+  {
+    when: '2023',
+    title: 'Color Climb',
+    proof: 'Finalist, 2023 NZ Game Awards',
+    text: 'A multiplayer platformer made in Unity with friends.',
+    href: 'https://officialprotondev.github.io/ColorClimb/',
+  },
+  {
+    when: '2024',
+    title: 'Vision College',
+    text: 'A diploma in web development and design, then one in software development.',
+  },
+  {
+    when: '2024 to 2026',
+    title: 'Outback Boats',
+    text: 'Built and ran the Shopify store with custom Liquid, kept the stock in Unleashed and the books in Xero.',
+  },
+  {
+    when: '2025',
+    title: 'Enform',
+    text: 'A two-month internship to build the first version of EnDrive. Then Activate Education Group kept me on, and Enform took me on full-time.',
+  },
+  {
+    when: '2026',
+    title: 'University of Waikato',
+    proof: 'GPA 9.0 out of 9',
+    text: 'The BSc in Computer Science, alongside the job. One paper to go.',
+  },
+];
+---
+
+<section class="before" id="before" aria-labelledby="before-title">
+  <Chapter id="before" title="Before all this" t0={T0} t1={T0 + 0.75}>
+    <p>I started programming at eight, mostly Unity games and small Python tools, and never really stopped.</p>
+  </Chapter>
+  <div class="story-line" {...hours(T0 + 0.75, T1)}>
+    <ol class="wrap timeline">
+      {
+        story.map((s) => (
+          <li class="tl-item">
+            <p class="tl-when">{s.when}</p>
+            <div class="tl-body">
+              <h3 class="tl-title">{s.href ? <a href={s.href}>{s.title}</a> : s.title}</h3>
+              {s.proof && <p class="tl-proof">{s.proof}</p>}
+              <p class="tl-text">{s.text}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

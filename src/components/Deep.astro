@@ -1,0 +1,18 @@
+---
+interface Props {
+  notes: string[];
+}
+
+const { notes } = Astro.props;
+---
+
+<div class="deep" data-deep>
+  <div class="deep-inner">
+    <div class="deep-head">
+      <h4>Engineering detail</h4>
+    </div>
+    <ul class="notes">
+      {notes.map((note) => <li set:html={note} />)}
+    </ul>
+  </div>
+</div>

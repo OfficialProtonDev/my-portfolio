@@ -1,0 +1,17 @@
+---
+import { clockText, hours } from '../lib/sky';
+
+const T0 = 15.75;
+const T1 = 17.5;
+---
+
+<aside class="support" aria-labelledby="support-title" {...hours(T0, T1)}>
+  <div class="wrap support-inner">
+    <p class="case-time" aria-hidden="true">{clockText(T0)}</p>
+    <h3 class="support-title" id="support-title">And the rest of the day</h3>
+    <p class="support-text">
+      Support tickets for the SilverStripe sites Enform looks after: fixing them, and changing them for the clients who
+      run them.
+    </p>
+  </div>
+</aside>

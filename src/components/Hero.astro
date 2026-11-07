@@ -1,0 +1,110 @@
+---
+import { dawnRanges as ranges } from '../lib/ranges';
+
+const agents = ['orchestrator', 'layout', 'copy', 'type', 'qa', 'fix'];
+
+// Ripples on the river: closer together near the horizon, as water recedes.
+const ripples = Array.from({ length: 22 }, (_, i) => {
+  const k = i / 21;
+  const y = 4 + Math.pow(k, 1.7) * 292;
+  const dash = 18 + k * 120;
+  const gap = 10 + k * 70;
+  return { y: y.toFixed(1), dash: dash.toFixed(0), gap: gap.toFixed(0), off: ((i * 137) % 400).toFixed(0), o: (0.3 - k * 0.12).toFixed(2) };
+});
+---
+
+<section class="hero" id="top" aria-labelledby="hero-name" data-hero data-t0="6" data-t1="7.25">
+  <div class="hero-sky wrap">
+    <h1 class="hero-name" id="hero-name" data-b="name" data-ink-auto="hero">
+      <span class="ln">Billy</span> <span class="ln ln-2">Hancock</span>
+    </h1>
+    <p class="hero-tag" data-b="tag" data-ink-auto="hero">Software developer in Hamilton, New&nbsp;Zealand.</p>
+
+    <aside class="run" aria-labelledby="run-title" data-run>
+      <div class="run-head">
+        <span class="run-orb" aria-hidden="true"></span>
+        <p class="run-title" id="run-title" data-run-title>Built before sunrise</p>
+        <p class="run-state" data-run-state>by five agents</p>
+        <span class="run-actions">
+          <button class="link-btn" type="button" data-run-logbtn hidden aria-expanded="false">Show the log</button>
+          <button class="link-btn" type="button" data-run-btn hidden>Watch again</button>
+        </span>
+      </div>
+      <ul class="run-agents" aria-label="Agents" data-run-agents>
+        {agents.map((name) => <li class="run-agent" data-agent={name}>{name}</li>)}
+      </ul>
+      <ol class="run-log" data-run-log>
+        <li class="run-line">
+          <span class="t">04:52</span><span class="a">orchestrator</span><span class="m"
+            >On a first visit, five agents build the top of this page in the dark, and a QA agent checks their work in
+            your browser before the sun comes up.</span
+          >
+        </li>
+        <li class="run-line">
+          <span class="t">04:52</span><span class="a">orchestrator</span><span class="m"
+            >Scripts are off here, so this is the finished page.</span
+          >
+        </li>
+      </ol>
+      <div class="run-q" data-run-q hidden>
+        <p class="run-q-from">The agents have one question</p>
+        <p class="run-q-text">How much detail should the projects go into?</p>
+        <div class="run-q-actions">
+          <button type="button" data-detail-set="short">The short version</button>
+          <button type="button" data-detail-set="deep">Engineering detail</button>
+        </div>
+      </div>
+      <p class="sr-only" aria-live="polite" data-run-live></p>
+    </aside>
+  </div>
+
+  <div class="hero-scene" aria-hidden="true">
+    <div class="hero-sun" data-sun></div>
+    <svg class="hero-ranges" viewBox="0 0 1440 140" preserveAspectRatio="none">
+      <path class="far" d={ranges.far}></path>
+      <path class="mid" d={ranges.mid}></path>
+      <path class="near" d={ranges.near}></path>
+    </svg>
+    <div class="hero-mist"></div>
+  </div>
+
+  <div class="hero-river" data-bg="#172030">
+    <svg class="hero-ripples" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+      {
+        ripples.map((r) => (
+          <line
+            x1="0"
+            x2="1440"
+            y1={r.y}
+            y2={r.y}
+            stroke-dasharray={`${r.dash} ${r.gap}`}
+            stroke-dashoffset={r.off}
+            style={`opacity:${r.o}`}
+          />
+        ))
+      }
+    </svg>
+    <div class="hero-glint" aria-hidden="true" data-glint></div>
+    <div class="wrap hero-cols">
+      <div class="hero-col">
+        <p class="hero-col-title" data-b="day-title"><a href="#day">By day</a></p>
+        <p class="hero-col-text" data-b="day">
+          I’m a software developer at Enform. I build EnDrive, the platform behind Vision Drive’s driver training, on my
+          own, and the agents my team uses for QA and fixes.
+        </p>
+      </div>
+      <div class="hero-col">
+        <p class="hero-col-title" data-b="night-title"><a href="#night">By night</a></p>
+        <p class="hero-col-text" data-b="night">
+          I’m finishing a computer science degree at Waikato, building a coaching app business with four classmates,
+          and making games.
+        </p>
+      </div>
+    </div>
+    <a class="hero-cue" href="#day" aria-label="Start the day" data-b="cue">
+      <svg viewBox="0 0 16 16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4">
+        <path d="M8 2.5v10.5M3.5 8.5 8 13l4.5-4.5"></path>
+      </svg>
+    </a>
+  </div>
+</section>
